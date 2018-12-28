@@ -14,22 +14,24 @@ import java.net.URL;
 public class TestRestApi {
 
     // 在capital_heat namespace里面的token
-    public static final String TOKEN = "EgIBT5Hm30yolfKgu5JuN4K0iQ5iPBncsUucktSsyjo=";
+    public static final String TOKEN = "<four-token>";
     public static final String VANTIQ_URL = "https://dev.vantiq.cn";
+    public static final String TOPIC_PUB = "/serviceA/domainAbc";
+    public static final String TOPIC_SUB_1 = "/service1/DomainFoo";
+    public static final String TOPIC_SUB_2 = "/service2/DomainBar";
     // 发送到 '/test/topic', 需要在这个测试用户的当前name space里面
-    public static final String TOPIC_URL = VANTIQ_URL + "/api/v1/resources/topics//mt/capitalheat/sap/domain1?token=" + TOKEN;
+    public static final String TOPIC_URL = VANTIQ_URL + "/api/v1/resources/topics/" + TOPIC_PUB + "?token=" + TOKEN;
 
     public static void main(String[] args) {
-        TestRestApi.postUpdateMaterial();
+        TestRestApi.postWithHttp();
     }
 
     // 不使用第三方库，只是用java.net实现
-    public static void postInvalidData() {
+    public static void postWithHttp() {
 
         // create a JSON object to POST
         JSONObject postJSON = new JSONObject();
-        postJSON.put("name", "Brett Rudenstein");
-        postJSON.put("age", "48");
+        postJSON.put("name", "Brett 1");
         postJSON.put("id", "23456789");
 
         String json = postJSON.toString();
@@ -57,53 +59,13 @@ public class TestRestApi {
         }
     }
 
-    public static void postNewMaterial() {
+    public static void postWithOKHttp() {
         OkHttpClient okHttpClient = new OkHttpClient();
 
-        // post data里面的数据需要是一个json格式的字符串，如 {"EVENT_KEY": "NEW_Material", "User_ID": "23456789"}
         JSONObject event = new JSONObject();
-        event.put("EVENT_KEY", "NEW_Material");
-        event.put("Service_Token", "some  token");
-        event.put("User_ID", "23456789");
-        JSONObject data = new JSONObject();
-        data.put("MaterialID", "m1101");
-        data.put("name", "物料的名字");
-        data.put("prop1", "属性值");
-        data.put("value1", 12.6);
-        event.put("data", data);
+        event.put("name", "Brett 2");
+        event.put("id", "23456789");
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), event.toString());
-
-
-        Request request = new Request.Builder()
-                .url(TOPIC_URL)
-                .post(body)
-                .build();
-
-        Call call = okHttpClient.newCall(request);
-        try {
-            Response response = call.execute();
-            System.out.println(response.body().string());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void postUpdateMaterial() {
-        OkHttpClient okHttpClient = new OkHttpClient();
-
-        // post data里面的数据需要是一个json格式的字符串，如 {"EVENT_KEY": "NEW_Material", "User_ID": "23456789"}
-        JSONObject event = new JSONObject();
-        event.put("EVENT_KEY", "UPDATE_Material");
-        event.put("Service_Token", "some  token");
-        event.put("User_ID", "23456789");
-        JSONObject data = new JSONObject();
-        data.put("MaterialID", "m1101");
-        data.put("name", "物料的名字");
-        data.put("prop1", "属性值");
-        data.put("value1", 12.6);
-        event.put("data", data);
-        RequestBody body = RequestBody.create(MediaType.parse("application/json"), event.toString());
-
 
         Request request = new Request.Builder()
                 .url(TOPIC_URL)

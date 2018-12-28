@@ -13,9 +13,9 @@ public class ProjectEventSubscriber {
         Vantiq vantiq = new Vantiq(TestRestApi.VANTIQ_URL);
         vantiq.setAccessToken(TestRestApi.TOKEN);
         vantiq.subscribe(Vantiq.SystemResources.TOPICS.value(),
-                "/mt/capitalheat/service1/project/new",
+                TestRestApi.TOPIC_SUB_1,
                 null,
-                new StandardOutputCallback("/mt/capitalheat/service1/project/new")
+                new StandardOutputCallback(TestRestApi.TOPIC_SUB_1)
         );
     }
 
@@ -23,9 +23,9 @@ public class ProjectEventSubscriber {
         Vantiq vantiq = new Vantiq(TestRestApi.VANTIQ_URL);
         vantiq.setAccessToken(TestRestApi.TOKEN);
         vantiq.subscribe(Vantiq.SystemResources.TOPICS.value(),
-                "/mt/capitalheat/service1/project/update",
+                TestRestApi.TOPIC_SUB_2,
                 null,
-                new StandardOutputCallback("/mt/capitalheat/service1/project/update")
+                new StandardOutputCallback(TestRestApi.TOPIC_SUB_2)
         );
     }
 }

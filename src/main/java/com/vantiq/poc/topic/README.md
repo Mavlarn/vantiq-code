@@ -4,9 +4,9 @@
 
 ## 准备
 需要有一个dev.vantiq.cn的开发账号，创建一个用于测试的name space或者使用现有的。实例中用到的topic：
- * /mt/capitalheat/sap/domain1    # 演示SAP中发生数据修改，发送事件
- * /mt/capitalheat/service1/project/new    # 服务1中的project领域发生一个新建项目的事件
- * /mt/capitalheat/service1/project/update    # 服务1中的project领域发生一个更新的事件
+具体的实例相关的vantiq平台的部分，请参考文档：
+https://github.com/Mavlarn/vantiq-doc/blob/master/2_vantiq_pronto_tutorial.md
+
 
 ## 说明
 ### TestRestApi
