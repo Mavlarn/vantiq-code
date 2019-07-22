@@ -14,20 +14,17 @@ import java.net.URL;
 public class TestRestApi {
 
     // 在capital_heat namespace里面的token
-    public static final String TOKEN = "<four-token>";
-    public static final String VANTIQ_URL = "https://dev.vantiq.cn";
-    public static final String TOPIC_PUB = "/serviceA/domainAbc";
-    public static final String TOPIC_SUB_1 = "/service1/DomainFoo";
-    public static final String TOPIC_SUB_2 = "/service2/DomainBar";
-    // 发送到 '/test/topic', 需要在这个测试用户的当前name space里面
-    public static final String TOPIC_URL = VANTIQ_URL + "/api/v1/resources/topics/" + TOPIC_PUB + "?token=" + TOKEN;
+    // ms_cptheat_demo: w8khbbIYraEjjSqf33en6mKPVptMeKvhVxyJluRJusc=
+//    public static final String TOKEN = "u1R9afOzTVtIxJUB3tWbXJ1gJymlVLA4mlS7_axADsE=";
+//    public static final String VANTIQ_URL = "https://dev.vantiq.cn";
 
-    public static void main(String[] args) {
-        TestRestApi.postWithHttp();
-    }
+
+//    public static final String TOPIC_SUB_2 = "/service2/DomainBar";
+    // 发送到 '/test/topic', 需要在这个测试用户的当前name space里面
+    public final String TOPIC_URL = VantiqTest.VANTIQ_URL + "/api/v1/resources/topics/" + VantiqTest.TOPIC_PUB + "?token=" + VantiqTest.TOKEN;
 
     // 不使用第三方库，只是用java.net实现
-    public static void postWithHttp() {
+    public void postWithHttp() {
 
         // create a JSON object to POST
         JSONObject postJSON = new JSONObject();
@@ -59,7 +56,7 @@ public class TestRestApi {
         }
     }
 
-    public static void postWithOKHttp() {
+    public void postWithOKHttp() {
         OkHttpClient okHttpClient = new OkHttpClient();
 
         JSONObject event = new JSONObject();

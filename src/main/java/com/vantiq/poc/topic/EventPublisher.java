@@ -10,21 +10,18 @@ public class EventPublisher {
 
     private static Vantiq vantiq;
 
-    public static void main(String[] args) {
-        vantiq = new Vantiq(TestRestApi.VANTIQ_URL);
-        vantiq.setAccessToken(TestRestApi.TOKEN);
-        publish();
+    public EventPublisher () {
+        vantiq = new Vantiq(VantiqTest.VANTIQ_URL);
+        vantiq.setAccessToken(VantiqTest.TOKEN);
     }
 
-    public static void publish() {
-        Vantiq vantiq = new Vantiq(TestRestApi.VANTIQ_URL);
-        vantiq.setAccessToken(TestRestApi.TOKEN);
+    public void publish() {
         Map event = new HashMap();
         event.put("id", "15");
-        event.put("name", "name 15");
+        event.put("name", "name 16");
 
         vantiq.publish(Vantiq.SystemResources.TOPICS.value(),
-                TestRestApi.TOPIC_PUB,
+                VantiqTest.TOPIC_PUB,
                 event,
                 new BaseResponseHandler()
         );
